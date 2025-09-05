@@ -330,6 +330,7 @@ static NSTimeInterval _yy_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef 
 }
 
 - (UIImage *)imageByInsetEdge:(UIEdgeInsets)insets withColor:(UIColor *)color {
+    if (self.size.width <= 0 || self.size.height <= 0) return nil;
     CGSize size = self.size;
     size.width -= insets.left + insets.right;
     size.height -= insets.top + insets.bottom;
@@ -371,6 +372,8 @@ static NSTimeInterval _yy_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef 
                           borderWidth:(CGFloat)borderWidth
                           borderColor:(UIColor *)borderColor
                        borderLineJoin:(CGLineJoin)borderLineJoin {
+    
+    if (self.size.width <= 0 || self.size.height <= 0)  return nil;
     
     if (corners != UIRectCornerAllCorners) {
         UIRectCorner tmp = 0;
@@ -500,6 +503,7 @@ static NSTimeInterval _yy_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef 
 }
 
 - (UIImage *)imageByTintColor:(UIColor *)color {
+    if (self.size.width <= 0 || self.size.height <= 0) return nil;
     UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
     [color set];

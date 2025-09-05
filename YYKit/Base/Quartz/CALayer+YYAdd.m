@@ -19,6 +19,7 @@ YYSYNTH_DUMMY_CLASS(CALayer_YYAdd)
 @implementation CALayer (YYAdd)
 
 - (UIImage *)snapshotImage {
+    if (self.width <= 0 || self.height <= 0) return nil;
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     [self renderInContext:context];
